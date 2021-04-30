@@ -3,7 +3,9 @@ package main
 import "fmt"
 
 func Yo(name string) string {
-	return "Yo, yoyoyo, " + name + "!"
+	const yoPrefix = "Yo, yoyoyo, "
+	const yoSuffix = "!"
+	return yoPrefix + name + yoSuffix
 }
 
 func main() {
