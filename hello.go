@@ -2,15 +2,35 @@ package main
 
 import "fmt"
 
-func Yo(name string) string {
-	const yoPrefix = "Yo, yoyoyo, "
-	const yoSuffix = "!"
-	if name == "" {
-		name = "man"
+type Language struct {
+	prefix      string
+	suffix      string
+	defaultName string
+}
+
+var langs = map[string]Language{
+	"english": Language{
+		"Yo, yoyoyo, ",
+		"!",
+		"man",
+	},
+	"spanish": Language{
+		"Jo, jojojo, ",
+		"!",
+		"hombre",
+	},
+}
+
+func Yo(name, language string) string {
+	if language == "" {
+		language = "english"
 	}
-	return yoPrefix + name + yoSuffix
+	if name == "" {
+		name = langs[language].defaultName
+	}
+	return langs[language].prefix + name + langs[language].suffix
 }
 
 func main() {
-	fmt.Println(Yo("banana"))
+	fmt.Println(Yo("banana", ""))
 }
